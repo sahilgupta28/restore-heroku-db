@@ -1,11 +1,13 @@
 #!/bin/bash
 
 #Start
-declare -- file_name="latest.dump"; #This is default dump name.
-declare -- host="your_hoat";
+declare -- file_name="latest.dump";
+declare -- host="your_host";
 declare -- username="your_username";
 declare -- password="your_password";
+declare -a app_names=(app-1 app-2 other);
 rm -rf $file_name
+
 
 #user Inputs
 PS3='Heroku is already logged in on your system: '
@@ -23,18 +25,16 @@ do
         *) echo "invalid option $REPLY";;
     esac
 done
-
 PS3='Select Heroku APP: '
-options=("app-1" "app-2" "other")
-select app_name in "${options[@]}"
+select app_name in "${app_names[@]}"
 do
     case $app_name in
-        "app-1b")
+        "${app_names[0]}")
             break;;
 
-        "app-2")
+        "${app_names[1]}")
             break;;
-          "other")
+         "${app_names[2]}")
             read -p "Enter your app name: "  app_name
             break;;
         *) echo "invalid option $REPLY";;
@@ -44,7 +44,7 @@ read -p "Enter your DB name on local: " db_name;
 
 #Show inputs response
 echo -e "\033[1;32;41m APP name - $app_name \e[0m";
-echo -e "\033[1;32;41m DB name - $db_name  $file_name\e[0m";
+echo -e "\033[1;32;41m DB name - $db_name \e[0m";
 
 #Backup Start
 heroku pg:backups:capture -a $app_name;

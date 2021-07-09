@@ -1,9 +1,17 @@
-##Make Desktop Application
+# restore-heroku-db
+
+Restore herohu DB command  for linux
+
+## Make Desktop Application
+
 For personal use , ` ~/.local/share/applications`
+
 gedit `~/.local/share/applications/name.desktop`
+
 For all users, `/usr/local/share/applications/` (or /usr/share/applications/ depending upon your system).
 
 sudo -i gedit `/usr/share/applications/name.desktop`
+
 Paste below text
 
 ```
